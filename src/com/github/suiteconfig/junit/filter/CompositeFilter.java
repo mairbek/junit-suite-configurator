@@ -16,6 +16,10 @@ public class CompositeFilter extends Filter {
         this.filters = ImmutableSet.copyOf(filters);
     }
 
+    public CompositeFilter(Filter... filters) {
+        this.filters = ImmutableSet.copyOf(filters);
+    }
+
 
     @Override
     public boolean shouldRun(Description description) {

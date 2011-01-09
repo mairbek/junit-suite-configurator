@@ -26,4 +26,11 @@ public class Filters {
         return ALWAYS_RUN;
     }
 
+    public static Filter composite(Filter... filters) {
+        return new CompositeFilter(filters);
+    }
+
+    public static Filter composite(Iterable<Filter> filters) {
+        return new CompositeFilter(filters);
+    }
 }
