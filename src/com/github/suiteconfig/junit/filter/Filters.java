@@ -33,4 +33,12 @@ public class Filters {
     public static Filter composite(Iterable<Filter> filters) {
         return new CompositeFilter(filters);
     }
+
+    public static Filter includeCategories(Class<?>... category) {
+        return new IncludeCategoriesFilter(category);
+    }
+
+    public static Filter excludeCategories(Class<?>... category) {
+        return new ExcludeCategoriesFilter(category);
+    }
 }
