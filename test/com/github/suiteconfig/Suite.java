@@ -2,12 +2,14 @@ package com.github.suiteconfig;
 
 import com.github.suiteconfig.categories.BrokenTest;
 import com.github.suiteconfig.categories.SmokeTest;
+import com.github.suiteconfig.junit.ParallelRunnerScheduler;
 import com.github.suiteconfig.rules.Rule1;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.Executors;
+
 import static com.github.suiteconfig.SuiteConfigurations.allInPackage;
 import static com.github.suiteconfig.SuiteConfigurations.classes;
-import static com.github.suiteconfig.junit.Schedulers.singleThread;
 import static com.github.suiteconfig.junit.filter.Filters.excludeCategories;
 import static com.github.suiteconfig.junit.filter.Filters.includeCategories;
 
@@ -28,7 +30,7 @@ public class Suite {
                             .filter(includeCategories(SmokeTest.class))
                             .filter(excludeCategories(BrokenTest.class))
                             .applyRule(new Rule1())
-            ).with(singleThread());
+            ).with(TestExecutors.parallelClasses(Executors.newFixedThreadPool(3)));
         }
     }
 }

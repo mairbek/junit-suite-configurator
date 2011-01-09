@@ -43,13 +43,15 @@ public abstract class AbstractConfiguration extends Runner {
             }
 
             RunConfiguration runConfiguration = runConfigurationBuilder.build();
-            RunnerBuilder builder = new ConfigurableRunnerBuilder(runConfiguration.suiteConfiguration().rules(), runConfiguration.scheduler());
+            RunnerBuilder builder = new ConfigurableRunnerBuilder(runConfiguration.suiteConfiguration().rules(), runConfiguration.testExecutor().testScheduler());
             Collection<Class<?>> classes = Lists.newLinkedList();
             classes.addAll(runConfiguration.suiteConfiguration().classesSupplier().get());
             // [mairbek] to avoid cycling dependency
             classes.remove(testClass);
             try {
-                delegate = new FilterableSuite(builder, classes, runConfiguration.suiteConfiguration().filters());
+                FilterableSuite filterableSuite = new FilterableSuite(builder, classes, runConfiguration.suiteConfiguration().filters());
+                filterableSuite.setScheduler(runConfiguration.testExecutor().classesScheduler());
+                delegate = filterableSuite;
             } catch (InitializationError initializationError) {
                 throw new IllegalStateException("");
             } catch (NoTestsRemainException e) {

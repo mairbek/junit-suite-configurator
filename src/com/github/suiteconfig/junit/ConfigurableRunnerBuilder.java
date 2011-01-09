@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * {@link org.junit.runners.model.RunnerBuilder} implementation that allows to specify rules and runner scheduler.
+ * {@link org.junit.runners.model.RunnerBuilder} implementation that allows to specify rules and runner testScheduler.
  *
  * @author Mairbek Khadikov
  */

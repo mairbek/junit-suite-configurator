@@ -1,18 +1,15 @@
 package com.github.suiteconfig;
 
-import org.junit.runners.model.RunnerScheduler;
-
 public class RunConfigurationBuilder {
     private final SuiteConfiguration suiteConfiguration;
-    private RunnerScheduler scheduler;
+    private TestExecutor testExecutor;
 
     public RunConfigurationBuilder(SuiteConfiguration suiteConfiguration) {
         this.suiteConfiguration = suiteConfiguration;
     }
 
-    public RunConfigurationBuilder with(RunnerScheduler scheduler) {
-        this.scheduler = scheduler;
-        return this;
+    public void with(TestExecutor testExecutor) {
+        this.testExecutor = testExecutor;
     }
 
     public RunConfiguration build() {
@@ -21,8 +18,8 @@ public class RunConfigurationBuilder {
                 return suiteConfiguration;
             }
 
-            public RunnerScheduler scheduler() {
-                return scheduler;
+            public TestExecutor testExecutor() {
+                return testExecutor;
             }
         };
     }
