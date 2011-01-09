@@ -2,14 +2,14 @@ package com.github.suiteconfig;
 
 public class RunConfigurationBuilder {
     private final SuiteConfiguration suiteConfiguration;
-    private TestExecutor testExecutor;
+    private InvocationEnvironment invocationEnvironment;
 
     public RunConfigurationBuilder(SuiteConfiguration suiteConfiguration) {
         this.suiteConfiguration = suiteConfiguration;
     }
 
-    public void with(TestExecutor testExecutor) {
-        this.testExecutor = testExecutor;
+    public void invokeIn(InvocationEnvironment invocationEnvironment) {
+        this.invocationEnvironment = invocationEnvironment;
     }
 
     public RunConfiguration build() {
@@ -18,8 +18,8 @@ public class RunConfigurationBuilder {
                 return suiteConfiguration;
             }
 
-            public TestExecutor testExecutor() {
-                return testExecutor;
+            public InvocationEnvironment testExecutor() {
+                return invocationEnvironment;
             }
         };
     }

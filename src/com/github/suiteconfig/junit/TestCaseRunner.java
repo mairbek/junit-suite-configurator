@@ -14,7 +14,7 @@ import org.junit.runners.model.Statement;
 import java.util.List;
 
 /**
- * Allows to run tests with specified list of the rules and testScheduler.
+ * Allows to run tests invokeIn specified list of the rules and testScheduler.
  *
  * @author Mairbek Khadikov
  */
