@@ -1,6 +1,5 @@
 package com.github.suiteconfig.tests;
 
-import com.github.suiteconfig.categories.BrokenTest;
 import com.github.suiteconfig.categories.SmokeTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;

@@ -2,7 +2,6 @@ package com.github.suiteconfig;
 
 import com.github.suiteconfig.categories.BrokenTest;
 import com.github.suiteconfig.categories.SmokeTest;
-import com.github.suiteconfig.junit.ParallelRunnerScheduler;
 import com.github.suiteconfig.rules.Rule1;
 import org.junit.runner.RunWith;
 
