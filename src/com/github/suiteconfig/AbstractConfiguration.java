@@ -51,9 +51,9 @@ public abstract class AbstractConfiguration extends Runner {
             try {
                 delegate = new FilterableSuite(builder, classes, runConfiguration.suiteConfiguration().filters());
             } catch (InitializationError initializationError) {
-                // todo throw exception
+                throw new IllegalStateException("");
             } catch (NoTestsRemainException e) {
-                // todo throw exception
+                throw new IllegalStateException("");
             }
         }
         return delegate;
