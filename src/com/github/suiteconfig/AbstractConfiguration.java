@@ -59,7 +59,7 @@ public abstract class AbstractConfiguration extends Runner {
         return delegate;
     }
 
-    public abstract void configure();
+    protected abstract void configure();
 
     public RunConfigurationBuilder run(Supplier<SuiteConfiguration> suiteConfigurationSupplier) {
         return run(suiteConfigurationSupplier.get());
