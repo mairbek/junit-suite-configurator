@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Junit-Suite-Configurator" basedir="." default="main">
+    <property file="build.properties" />
     <property name="dir.lib" value="lib"/>
     <property name="dir.src" value="src"/>
     <property name="dir.target" value="target"/>
@@ -30,7 +31,7 @@
     </target>
 
     <target name="jar" depends="compile">
-        <jar destfile="${dir.distr}/junit-suite-config.jar" basedir="${dir.build}"/>
+        <jar destfile="${dir.distr}/junit-suite-configurator-${release.version}.jar" basedir="${dir.build}"/>
         <java jar="${dir.distr}/junit-suite-config.jar" fork="true"/>
     </target>
 
