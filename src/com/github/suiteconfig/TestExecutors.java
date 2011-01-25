@@ -113,7 +113,7 @@ public class TestExecutors {
         }
     }
 
-    public enum ParallelType {
+    private enum ParallelType {
         CLASSES, METHODS, TESTS
     }
 
