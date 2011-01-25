@@ -15,13 +15,8 @@ import java.util.Collection;
  */
 public class FilterableSuite extends Suite {
 
-    public FilterableSuite(RunnerBuilder builder, Collection<Class<?>> classes, Filter filter) throws InitializationError, NoTestsRemainException {
-        super(builder, classes.toArray(new Class<?>[classes.size()]));
-        filter(filter);
-    }
-
-    public FilterableSuite(RunnerBuilder builder, Collection<Class<?>> classes, Collection<Filter> filters) throws InitializationError, NoTestsRemainException {
-        super(builder, classes.toArray(new Class<?>[classes.size()]));
+    public FilterableSuite(RunnerBuilder builder, Class<?> clazz, Collection<Class<?>> classes, Collection<Filter> filters) throws InitializationError, NoTestsRemainException {
+        super(builder, clazz, classes.toArray(new Class<?>[classes.size()]));
         filter(new CompositeFilter(filters));
     }
 

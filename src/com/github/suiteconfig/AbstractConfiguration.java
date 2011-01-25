@@ -49,7 +49,7 @@ public abstract class AbstractConfiguration extends Runner {
             // [mairbek] to avoid cycling dependency
             classes.remove(testClass);
             try {
-                FilterableSuite filterableSuite = new FilterableSuite(builder, classes, runConfiguration.suiteConfiguration().filters());
+                FilterableSuite filterableSuite = new FilterableSuite(builder, testClass, classes, runConfiguration.suiteConfiguration().filters());
                 filterableSuite.setScheduler(runConfiguration.testExecutor().classesScheduler());
                 delegate = filterableSuite;
             } catch (InitializationError initializationError) {

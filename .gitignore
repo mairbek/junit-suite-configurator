@@ -1,3 +1,5 @@
 /.idea
 /Junit-suite-configurator.iml
 /target
+/.project
+/.classpath
