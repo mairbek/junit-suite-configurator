@@ -27,7 +27,7 @@ public class Suite {
                     .filter(includeCategories(SmokeTest.class))
                     .filter(excludeCategories(BrokenTest.class))
                     .applyRule(new Rule1())
-            ).invokeIn(parallel().classes().threadCount(3));
+            ).invokeIn(parallel().methods().threadCount(10));
         }
     }
 }

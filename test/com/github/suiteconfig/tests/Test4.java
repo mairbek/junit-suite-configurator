@@ -12,19 +12,19 @@ public class Test4 {
     @Test
     public void first() throws Exception {
         assertTrue(true);
-        Thread.sleep(1000000);
+        Thread.sleep(5000);
     }
 
     @Test
     public void second() throws Exception {
         assertTrue(true);
-        Thread.sleep(1000000);
+        Thread.sleep(5000);
     }
 
     @Test
 //    @Category(BrokenTest.class)
     public void third() throws Exception {
         assertTrue(true);
-        Thread.sleep(1000000);
+        Thread.sleep(5000);
     }
 }

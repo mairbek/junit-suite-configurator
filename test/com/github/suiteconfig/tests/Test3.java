@@ -12,7 +12,7 @@ public class Test3 {
     @Test
     public void first() throws Exception {
         assertTrue(true);
-        Thread.sleep(100000);
+        Thread.sleep(5000);
     }
 
     @Test

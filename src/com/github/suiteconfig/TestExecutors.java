@@ -1,7 +1,5 @@
 package com.github.suiteconfig;
 
-import com.github.suiteconfig.junit.ParallelRunnerScheduler;
-import com.github.suiteconfig.junit.Schedulers;
 import org.junit.runners.model.RunnerScheduler;
 
 import java.util.concurrent.ExecutorService;
@@ -35,16 +33,16 @@ public class TestExecutors {
             }
 
             public RunnerScheduler classesScheduler() {
-                return new ParallelRunnerScheduler(executorService);
+                return Schedulers.asynchronous(executorService);
             }
         };
     }
 
-    public static InvocationEnvironment parallelTests(final ExecutorService executorService) {
+    public static InvocationEnvironment parallelMethods(final ExecutorService executorService) {
         return new InvocationEnvironment() {
 
             public RunnerScheduler testScheduler() {
-                return new ParallelRunnerScheduler(executorService);
+                return Schedulers.asynchronous(executorService);
             }
 
             public RunnerScheduler classesScheduler() {
@@ -53,6 +51,11 @@ public class TestExecutors {
         };
     }
 
+    public static InvocationEnvironment parallelTests(ExecutorService executorService) {
+        return new ParallelTestsInvocationEnvironment(executorService);
+    }
+
+
     public static InvocationEnvironmentBuilder parallel() {
         return new InvocationEnvironmentBuilder();
     }
@@ -60,6 +63,7 @@ public class TestExecutors {
     public static class InvocationEnvironmentBuilder implements InvocationEnvironment {
         private ParallelType type = ParallelType.CLASSES;
         private int count = 1;
+        private InvocationEnvironment delegate;
 
         public RunnerScheduler testScheduler() {
             return delegate().testScheduler();
@@ -79,26 +83,38 @@ public class TestExecutors {
             return this;
         }
 
+        public InvocationEnvironmentBuilder tests() {
+            type = ParallelType.TESTS;
+            return this;
+        }
+
         public InvocationEnvironmentBuilder threadCount(int count) {
             this.count = count;
             return this;
         }
 
         private InvocationEnvironment delegate() {
-            switch (type) {
-                case CLASSES:
-                    return parallelClasses(Executors.newFixedThreadPool(count));
-                case METHODS:
-                    return parallelTests(Executors.newFixedThreadPool(count));
-                default:
-                    throw new IllegalStateException("");
-
+            if (delegate == null) {
+                switch (type) {
+                    case CLASSES:
+                        delegate = parallelClasses(Executors.newFixedThreadPool(count));
+                        break;
+                    case METHODS:
+                        delegate = parallelMethods(Executors.newFixedThreadPool(count));
+                        break;
+                    case TESTS:
+                        delegate = parallelTests(Executors.newFixedThreadPool(count));
+                        break;
+                    default:
+                        throw new IllegalStateException("");
+                }
             }
+            return delegate;
         }
     }
 
     public enum ParallelType {
-        CLASSES, METHODS
+        CLASSES, METHODS, TESTS
     }
 
 }
