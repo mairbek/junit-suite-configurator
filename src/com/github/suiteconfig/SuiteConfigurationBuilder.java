@@ -105,7 +105,7 @@ public class SuiteConfigurationBuilder implements Supplier<SuiteConfiguration> {
                 MethodRule rule = new MethodRule() {
                     public Statement apply(Statement base, FrameworkMethod method, Object target) {
                         Class<?> testClass = method.getMethod().getDeclaringClass();
-                        Collection<MethodRule> methodRules = rulesMultimap.get(testClass);
+                        List<MethodRule> methodRules = Lists.newLinkedList(rulesMultimap.get(testClass));
 
                         MethodRule result = Rules.nothing();
                         if (!methodRules.isEmpty()) {

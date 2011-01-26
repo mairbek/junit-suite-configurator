@@ -5,12 +5,12 @@ import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-import java.util.Collection;
+import java.util.List;
 
 public class CompositeRule implements MethodRule {
-    private final Collection<MethodRule> rules;
+    private final List<MethodRule> rules;
 
-    public CompositeRule(Collection<MethodRule> rules) {
+    public CompositeRule(List<MethodRule> rules) {
         this.rules = ImmutableList.copyOf(rules);
     }
 

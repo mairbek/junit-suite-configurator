@@ -5,6 +5,7 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
 import java.util.Collection;
+import java.util.List;
 
 public class Rules {
     private static MethodRule INSTANCE = new MethodRule() {
@@ -21,7 +22,7 @@ public class Rules {
         return new CompositeRule(rules);
     }
 
-    public static CompositeRule composite(Collection<MethodRule> rules) {
+    public static CompositeRule composite(List<MethodRule> rules) {
         return new CompositeRule(rules);
     }
 
