@@ -16,7 +16,7 @@ public class ClassSupplier implements Supplier<Collection<Class<?>>> {
     }
 
     public ClassSupplier(Class<?>... classes) {
-        this.classes = ImmutableSet.of(classes);
+        this.classes = ImmutableSet.copyOf(classes);
     }
 
     public Collection<Class<?>> get() {
